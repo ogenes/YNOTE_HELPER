@@ -4,7 +4,7 @@ import requests
 
 
 def config():
-    with open("./config.json") as config_file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + "/config.json") as config_file:
         data = config_file.read()
     return json.loads(data)
 
@@ -77,7 +77,7 @@ def download(file_id):
 
 
 if __name__ == '__main__':
-    basedir = os.getcwd() + '/note/'
+    basedir = os.path.dirname(os.path.abspath(__file__)) + '/note/'
     if not os.path.exists(basedir):
         os.makedirs(basedir, 0o755)
     try:
