@@ -28,7 +28,7 @@ function request(string $url): string
     $YNOTE_LOGIN = conf()['YNOTE_LOGIN'] ?? '';
     
     if (empty($YNOTE_SESS) || empty($YNOTE_LOGIN)) {
-        throw new ErrorException('请先在网页端登录并复制对应Cookie值保存到conf中，详情见 README ', 100);
+        throw new ErrorException('请先在网页端登录并复制对应Cookie值保存到config.json中，详情见 README ', 100);
     }
     $HTTPHEADER[] = "Cookie: YNOTE_SESS={$YNOTE_SESS}; YNOTE_LOGIN={$YNOTE_LOGIN}";
     
@@ -61,7 +61,6 @@ function listEntireByParentPath(string $basedir): array
     $params = [
         "method" => "listEntireByParentPath",
         "_system" => "macos",
-        "cstk" => conf()['YNOTE_CSTK'] ?? '',
         "sev" => "j1",
         "path" => "/",
         "dirOnly" => true,
@@ -106,7 +105,6 @@ function listPageByParentId(string $id, string $basedir): array
         "isReverse" => false,
         "method" => "listPageByParentId",
         "_system" => "macos",
-        "cstk" => conf()['YNOTE_CSTK'] ?? '',
         "sev" => "j1",
     ];
     $queryStr = http_build_query($params);
@@ -145,7 +143,6 @@ function download(string $fileId): string
     $params = [
         "method" => "download",
         "_system" => "macos",
-        "cstk" => conf()['YNOTE_CSTK'] ?? '',
         "sev" => "j1",
         "fileId" => $fileId,
         "version" => -1,
